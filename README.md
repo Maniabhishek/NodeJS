@@ -26,3 +26,5 @@ NodeJs is a c++ application that embeds the v8 js engine
 
 when we write `node someFile.js` then node js will open the file and process the command within it
 well it is more complicated than this
+
+> A Node.js app runs in a single process, without creating a new thread for every request. Node.js provides a set of asynchronous I/O primitives in its standard library that prevent JavaScript code from blocking and generally, libraries in Node.js are written using non-blocking paradigms, making blocking behavior the exception rather than the norm.
