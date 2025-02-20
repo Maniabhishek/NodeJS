@@ -85,3 +85,15 @@ D
 B
 */
 ```
+
+```js
+Promise.all([
+  Promise.resolve("Success 1"),
+  Promise.reject("Failure"),
+  Promise.resolve("Success 2")
+])
+  .then(results => console.log("Results:", results))
+  .catch(error => console.log("Caught Error:", error));
+
+```
+
