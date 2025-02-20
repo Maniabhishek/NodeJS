@@ -42,3 +42,17 @@ const p = new Promise((resolve, reject) => {
 // 3 100
 // 4
 ```
+
+```js
+const p = new Promise((resolve, reject) => {
+    console.log(1);
+    resolve(100);
+  });
+  
+  p.then(() => {
+    console.log(2);
+    return new Promise((resolve)=> resolve(5) );
+  })
+    .then((d) => console.log(3,d))
+    .then(() => console.log(4));
+```
