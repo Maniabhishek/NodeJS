@@ -55,6 +55,13 @@ const p = new Promise((resolve, reject) => {
   })
     .then((d) => console.log(3,d))
     .then(() => console.log(4));
+
+/* o/p
+1
+2
+3,5
+4
+*/
 ```
 
 
@@ -70,4 +77,11 @@ async function test() {
   console.log("C");
   test();
   console.log("D");
+
+/*
+C
+A
+D
+B
+*/
 ```
