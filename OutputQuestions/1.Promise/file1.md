@@ -56,3 +56,18 @@ const p = new Promise((resolve, reject) => {
     .then((d) => console.log(3,d))
     .then(() => console.log(4));
 ```
+
+
+```js
+async function test() {
+    console.log("A");
+  
+    await new Promise(resolve => setTimeout(resolve, 0));
+  
+    console.log("B");
+  }
+  
+  console.log("C");
+  test();
+  console.log("D");
+```
