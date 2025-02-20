@@ -21,3 +21,24 @@ console.log("End");
 // setTimeout 
 // setTimeout inside Promise
 ```
+
+
+```js
+const p = new Promise((resolve, reject) => {
+    console.log(1);
+    resolve(100);
+  });
+  
+  p.then(() => {
+    console.log(2);
+    return p;
+  })
+    .then((d) => console.log(3,d))
+    .then(() => console.log(4));
+
+// output
+// 1
+// 2
+// 3 100
+// 4
+```
