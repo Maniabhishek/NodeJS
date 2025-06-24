@@ -44,3 +44,25 @@ console.log(roles)
 }
 */
 ```
+
+- Count Occurrences of Items
+```js
+const fruits = ["apple", "banana", "apple", "orange", "banana", "banana"];
+
+const counts = fruits.reduce((acc, curr)=> {
+    if(!acc[curr]) acc[curr] = 0
+    acc[curr]++
+    return acc
+}, {})
+
+console.log(counts)
+
+//or 
+
+const counts2 = fruits.reduce((acc, curr)=> {
+    acc[curr] = (acc[curr] || 0) + 1;
+    return acc;
+}, {})
+
+console.log(counts2)
+```
