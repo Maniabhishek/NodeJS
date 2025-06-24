@@ -90,3 +90,17 @@ console.log(productObj)
 */
 ```
 
+- Chaining Calculations
+```js
+const cart = [
+  { name: "Shoe", price: 100 },
+  { name: "Hat", price: 40 }
+];
+
+const total = cart
+  .reduce((acc, item) => acc + item.price * 1.1, 0) // apply 10% tax
+  * 0.9; // apply 10% discount
+
+console.log(total); // 140.4
+
+```
