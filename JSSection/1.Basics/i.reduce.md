@@ -104,3 +104,30 @@ const total = cart
 console.log(total); // 140.4
 
 ```
+
+- running promises in sequences
+```js
+const promises = [
+    () => new Promise(resolve=> {
+        setTimeout(()=> resolve(1), 1000)
+    }),
+    ()=> new Promise(resolve=> {
+        setTimeout(()=> {
+            resolve(2)
+        }, 2000)
+    }),
+    () => new Promise((resolve)=> {
+        setTimeout(()=> {
+            resolve(3)
+        })
+    })
+]
+
+function runInSequence(tasks) {
+    return tasks.reduce((promiseChain, task)=> {
+        return promiseChain.then(results => {
+            return task().then(result=> [...results, result])
+        })
+    }, Promise.resolve([]))
+}
+```
