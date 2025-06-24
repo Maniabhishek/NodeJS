@@ -66,3 +66,27 @@ const counts2 = fruits.reduce((acc, curr)=> {
 
 console.log(counts2)
 ```
+
+- Convert Array to Object (using id as key)
+```js
+const products = [
+    { id: 1, name: "Pen" },
+    { id: 2, name: "Pencil" },
+  ];
+
+
+const productObj = products.reduce((acc, curr)=> {
+    acc[curr.id] = curr
+    return acc
+}, {})
+
+console.log(productObj)
+
+  /*
+{
+  1: { id: 1, name: "Pen" },
+  2: { id: 2, name: "Pencil" }
+}
+*/
+```
+
