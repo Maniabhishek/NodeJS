@@ -14,7 +14,7 @@
 - then two variables rad1 and rad2 will be assigned memery and assigned as undefined
 
 - now once the exeution part starts it start execution from line 1 and assign n = 2 to the variable
-- then function which has already been stoed in the memory
+- then function which has already been stored in the memory
 - now function has been invoked, a new functional execution context is created , js will see in its memory if it has function or not since this function was stored at time of memory phase thus it will execute this function in function execution context and store the result in rad1 variable
 - similarly for rad2 variable
 
