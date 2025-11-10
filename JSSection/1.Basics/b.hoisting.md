@@ -28,7 +28,7 @@ console.log("hoisting")
 
 -  now try to run the above code
 -  you will find that printName function is executed successfully and x value is printed as undefined
-- why is it undefined , it simple during the memory phase javascript moves all the variabled on the top or assignes the memory to all the variables
+- why is it undefined , it is simple during the memory phase javascript moves all the variabled on the top or assignes the memory to all the variables
 - so during memory phase var x has undefined and then printName function is also stored in the memory
 - after the memory phases execution phase start it see funciton has been invoked before initialization but it wont throw any error as function has been hoisted already during the memory phase or function has been assigned memory during the memory phase and hence it executes the function even before intialization
 - then we are trying to print the variable x even for declaration but in js variable has already been hoisted or assigned memory during the memory phase where js assignes those variable as undefined
