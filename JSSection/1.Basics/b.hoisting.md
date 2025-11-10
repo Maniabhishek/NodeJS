@@ -10,7 +10,7 @@ console.log(x)
 ```
 - now execution of above code
 - a GEC is created in the stack , memory phase will be executed first where each variable will get the memory like var x will have undefined , function will be copied and given memory
-- afer that execution starts
+- after that execution starts
 - o/p is hoisting and then prints variabe x 4
 
 - now let's do some changes with code
