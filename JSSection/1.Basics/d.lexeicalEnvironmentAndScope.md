@@ -27,7 +27,7 @@ a()
 console.log(b)
 ```
  -  the above code execution when tries to access v outside the function a then fec in which b would have created must have been removed when it reached to this line (printing b) then there is no variable b in memory
- -  hence it will throw error as uncaught reference error: not defined  
+ -  hence it will throw error as *** uncaught reference error: not defined ***
 
 <img width=400 src="https://github.com/user-attachments/assets/7f872387-d191-4b0d-b9ae-e2d3ddbe685a">
 
