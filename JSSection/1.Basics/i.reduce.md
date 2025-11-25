@@ -8,7 +8,7 @@ const sum = arr.reduce((acc, curr)=> {
 ```
 - flatten array
 ```js
-const arr = [[1,2], [1,2], [5,6], [7,8]]
+const arr = [[1,2], [3,4], [5,6], [7,8]]
 const flattenedArray = arr.reduce((acc, currentValue)=> {
     // acc = [...acc, ...currentValue]
     // // or 
