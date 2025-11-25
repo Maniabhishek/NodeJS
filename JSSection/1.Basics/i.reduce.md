@@ -13,7 +13,7 @@ const flattenedArray = arr.reduce((acc, currentValue)=> {
     // acc = [...acc, ...currentValue]
     // // or 
     // console.log(acc)
-    acc = acc.concat(currentValue)
+    acc = acc.concat(currentValue) // concat here doesnt modify the array but returns a new array
     console.log(acc)
     return acc
 }, [])
