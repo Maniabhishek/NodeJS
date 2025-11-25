@@ -114,6 +114,7 @@ console.log(total); // 140.4
 ```
 
 - running promises in sequences
+- you have been given array of function which has promises to execute , your task is to run all the promise functino in sequence
 ```js
 const promises = [
     () => new Promise(resolve=> {
