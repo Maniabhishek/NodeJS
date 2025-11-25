@@ -21,6 +21,14 @@ const flattenedArray = arr.reduce((acc, currentValue)=> {
 console.log(flattenedArray)
 ```
 
+- above code can be simplified as follows
+```js
+const res = arr.reduce((a,c)=> {
+    a = a.concat(c)
+    return a
+})
+```
+
 -  Group items by property
 ```js
 const users = [
