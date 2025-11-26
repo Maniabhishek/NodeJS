@@ -16,17 +16,15 @@ let p = new Promise((resolve,reject)=>{
     reject(error) — if an error has occurred, error is the error object.
  */
 
-/**
- * The promise object returned by the new Promise constructor has these internal properties:
+- The promise object returned by the new Promise constructor has these internal properties:
+	- state — initially "pending", then changes to either "fulfilled" when resolve is called or "rejected" when reject is called.
+	- result — initially undefined, then changes to value when resolve(value) is called or error when reject(error) is called.
 
-state — initially "pending", then changes to either "fulfilled" when resolve is called or "rejected" when reject is called.
-result — initially undefined, then changes to value when resolve(value) is called or error when reject(error) is called.
- */
 
-//So the executor eventually moves promise to one of these states:
-// exectutor => {state: "fulfilled" ,result: value} or executor => {state: "rejected", result: error}
+- So the executor eventually moves promise to one of these states:
+- exectutor => {state: "fulfilled" ,result: value} or executor => {state: "rejected", result: error}
 
-//Here’s an example of a promise constructor and a simple executor function with “producing code” that takes time (via setTimeout):
+- Here’s an example of a promise constructor and a simple executor function with “producing code” that takes time (via setTimeout):
 ```js
 const promise = new Promise((resovle,reject)=>{
 	setTimeout(()=>{
