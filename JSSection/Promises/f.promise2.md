@@ -41,24 +41,23 @@ new Promise object => {state: pending , result: undefined}
 after 1 sec it resolves to {state: fulfilled, result: 1}
  */
 
-//now an example of the executor rejecting the promise with an error:
+- now an example of the executor rejecting the promise with an error:
+```
 const promise2 = new Promise((resolve,reject)=>{
 	setTimeout(()=>{
 		reject(new Error("error here "))
 	},1000)
 })
+```
+- new Promise object initially {state: "pending", result: undefined}
+- after 1 sec promise object changes to {state: "rejected", result: error}
 
-// new Promise object initially {state: "pending", result: undefined}
-// after 1 sec promise object changes to {state: "rejected", result: error}
+- A promise that is either resolved or rejected is called “settled”, as opposed to an initially “pending” promise.
 
-//A promise that is either resolved or rejected is called “settled”, as opposed to an initially “pending” promise.
+- The executor should call only one resolve or one reject. Any state change is final.
 
-/**
- * The executor should call only one resolve or one reject. Any state change is final.
-
-		All further calls of resolve and reject are ignored:
- */
-
+- All further calls of resolve and reject are ignored:
+```
 const promise3 = new Promise((resolve,reject)=>{
 	resolve("done");
 	reject("error");//ignored
@@ -66,12 +65,12 @@ const promise3 = new Promise((resolve,reject)=>{
 		//....
 	});//ignored
 })
+```
 
-/** 
- * The idea is that a job done by the executor may have only one result or an error.
+- The idea is that a job done by the executor may have only one result or an error.
 
-	Also, resolve/reject expect only one argument (or none) and will ignore additional arguments.
- */
+- Also, resolve/reject expect only one argument (or none) and will ignore additional arguments.
+
 
 /**
  * In case something goes wrong, the executor should call reject. That can be done with any type of argument (just like resolve). But it is recommended to use Error objects (or objects that inherit from Error)
