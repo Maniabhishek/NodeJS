@@ -31,12 +31,10 @@ const promise = new Promise((resovle,reject)=>{
 	},1000)
 });
 ```
-/**
- * We can see two things by running the code above:
 
-The executor is called automatically and immediately (by new Promise).
-
-The executor receives two arguments: resolve and reject. These functions are pre-defined by the JavaScript engine, so we don’t need to create them. We should only call one of them when ready.
+- We can see two things by running the code above:
+	- The executor is called automatically and immediately (by new Promise).
+	- The executor receives two arguments: resolve and reject. These functions are pre-defined by the JavaScript engine, so we don’t need to create them. We should only call one of them when ready.
 
 After one second of “processing”, the executor calls resolve("done") to produce the result. This changes the state of the promise object:
 new Promise object => {state: pending , result: undefined}
