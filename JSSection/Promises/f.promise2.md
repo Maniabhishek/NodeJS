@@ -10,11 +10,10 @@ let p = new Promise((resolve,reject)=>{
     // executer (the producing code)
 })
 ```
-/**
- * When the executor obtains the result, be it soon or late, doesn’t matter, it should call one of these callbacks:
-    resolve(value) — if the job is finished successfully, with result value.
-    reject(error) — if an error has occurred, error is the error object.
- */
+
+ - When the executor obtains the result, be it soon or late, doesn’t matter, it should call one of these callbacks:
+    - resolve(value) — if the job is finished successfully, with result value.
+    - reject(error) — if an error has occurred, error is the error object.
 
 - The promise object returned by the new Promise constructor has these internal properties:
 	- state — initially "pending", then changes to either "fulfilled" when resolve is called or "rejected" when reject is called.
