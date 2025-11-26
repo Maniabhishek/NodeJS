@@ -1,3 +1,5 @@
+- create a function that resolves after 5th attempt
+- and then create a retry method which keeps calling the previous function (which returns the promise) for n number of times 
 ```
 
 function getUnReliableTask(){
@@ -54,3 +56,4 @@ unreliableTask().then((d) => {
     console.log("6th call ", err)
 })
 ```
+[continuation here]()
