@@ -27,11 +27,13 @@ result — initially undefined, then changes to value when resolve(value) is cal
 // exectutor => {state: "fulfilled" ,result: value} or executor => {state: "rejected", result: error}
 
 //Here’s an example of a promise constructor and a simple executor function with “producing code” that takes time (via setTimeout):
+```js
 const promise = new Promise((resovle,reject)=>{
 	setTimeout(()=>{
 		resovle(2);
 	},1000)
 });
+```
 /**
  * We can see two things by running the code above:
 
