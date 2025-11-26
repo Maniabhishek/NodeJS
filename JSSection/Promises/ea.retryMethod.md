@@ -1,0 +1,56 @@
+```
+
+function getUnReliableTask(){
+    let attempt = 1
+    return function unreliableTask(){
+        return new Promise((res, rej)=> {
+            if(attempt < 6) {
+                attempt++
+                rej("failed")
+            }
+            else {
+                res("success")
+            }
+        })
+    }
+}
+
+const unreliableTask = getUnReliableTask()
+
+console.log("start")
+unreliableTask().then((d) => {
+    console.log("1st call ", d)
+}).catch((err)=> {
+    console.log("1st call ", err)
+})
+
+unreliableTask().then((d) => {
+    console.log("2nd call ", d)
+}).catch((err)=> {
+    console.log("2nd call ", err)
+})
+
+unreliableTask().then((d) => {
+    console.log("3rd call ", d)
+}).catch((err)=> {
+    console.log("3rd call ", err)
+})
+
+unreliableTask().then((d) => {
+    console.log("4th call ", d)
+}).catch((err)=> {
+    console.log("4th call ", err)
+})
+
+unreliableTask().then((d) => {
+    console.log("5th call ", d)
+}).catch((err)=> {
+    console.log("5th call ", err)
+})
+
+unreliableTask().then((d) => {
+    console.log("6th call ", d)
+}).catch((err)=> {
+    console.log("6th call ", err)
+})
+```
