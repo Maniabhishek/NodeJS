@@ -36,13 +36,13 @@ const promise = new Promise((resovle,reject)=>{
 	- The executor is called automatically and immediately (by new Promise).
 	- The executor receives two arguments: resolve and reject. These functions are pre-defined by the JavaScript engine, so we don’t need to create them. We should only call one of them when ready.
 
-After one second of “processing”, the executor calls resolve("done") to produce the result. This changes the state of the promise object:
-new Promise object => {state: pending , result: undefined}
-after 1 sec it resolves to {state: fulfilled, result: 1}
- */
+- After one second of “processing”, the executor calls resolve("done") to produce the result. This changes the state of the promise object:
+	- new Promise object => {state: pending , result: undefined}
+	- after 1 sec it resolves to {state: fulfilled, result: 1}
+
 
 - now an example of the executor rejecting the promise with an error:
-```
+```js
 const promise2 = new Promise((resolve,reject)=>{
 	setTimeout(()=>{
 		reject(new Error("error here "))
@@ -71,44 +71,41 @@ const promise3 = new Promise((resolve,reject)=>{
 
 - Also, resolve/reject expect only one argument (or none) and will ignore additional arguments.
 
+- In case something goes wrong, the executor should call reject. That can be done with any type of argument (just like resolve). But it is recommended to use Error objects (or objects that inherit from Error)
 
-/**
- * In case something goes wrong, the executor should call reject. That can be done with any type of argument (just like resolve). But it is recommended to use Error objects (or objects that inherit from Error)
- */
 
-/**
- * In practice, an executor usually does something asynchronously and calls resolve/reject after some time, but it doesn’t have to. We also can call resolve or reject immediately, like this:
- */
+- In practice, an executor usually does something asynchronously and calls resolve/reject after some time, but it doesn’t have to. We also can call resolve or reject immediately, like this:
 
+```js
 const promise4 = new Promise((resolve)=>{
 	resolve(123);//immediately resolves to 123
 })
+```
+- the state and result are internal
+- The properties state and result of the Promise object are internal. We can’t directly access them. We can use the methods .then/.catch/.finally for that. They are described below.
 
-// the state and result are internal
-/** 
- * The properties state and result of the Promise object are internal. We can’t directly access them. We can use the methods .then/.catch/.finally for that. They are described below.
- */
 
-//consumers : then , catch
-/**
- * A Promise object serves as a link between the executor (the “producing code” or “singer”) and the consuming functions (the “fans”), which will receive the result or error. Consuming functions can be registered (subscribed) using the methods .then and .catch.
- */
+- consumers : then , catch
 
-//The most important, fundamental one is .then.
-//The syntax is:
+- A Promise object serves as a link between the executor (the “producing code” or “singer”) and the consuming functions (the “fans”), which will receive the result or error. Consuming functions can be registered (subscribed) using the methods .then and .catch.
+
+
+- The most important, fundamental one is .then.
+- The syntax is:
+
+```js
 promise.then(
 	function(result){/* handles a successful result */},
 	function(error){ /* handles an error */}
 )
+```
 
-/**
- * The first argument of .then is a function that runs when the promise is resolved and receives the result.
+- The first argument of .then is a function that runs when the promise is resolved and receives the result.
+- The second argument of .then is a function that runs when the promise is rejected and receives the error.
 
-The second argument of .then is a function that runs when the promise is rejected and receives the error.
+- For instance, here’s a reaction to a successfully resolved promise:
 
-For instance, here’s a reaction to a successfully resolved promise:
- */
-
+```js
 const promise5 = new Promise((resolve,reject)=>{
 	setTimeout(()=>{
 		resolve(1);
@@ -126,25 +123,20 @@ promise5.then(
 	result => console.log(result),
 	error => console.log(error)
 )
+```
+- The first function was executed.
+- And in the case of a rejection, the second one:
 
-//The first function was executed.
-//And in the case of a rejection, the second one:
 
-/**
- * Cleanup: finally
-Just like there’s a finally clause in a regular try {...} catch {...}, there’s finally in promises.
+- Cleanup: finally
+- Just like there’s a finally clause in a regular try {...} catch {...}, there’s finally in promises.
+- The call .finally(f) is similar to .then(f, f) in the sense that f runs always, when the promise is settled: be it resolve or reject.
+- The idea of finally is to set up a handler for performing cleanup/finalizing after the previous operations are complete.
+- E.g. stopping loading indicators, closing no longer needed connections, etc.
+- Think of it as a party finisher. No matter was a party good or bad, how many friends were in it, we still need (or at least should) do a cleanup after it.
+- The code may look like this:
 
-The call .finally(f) is similar to .then(f, f) in the sense that f runs always, when the promise is settled: be it resolve or reject.
-
-The idea of finally is to set up a handler for performing cleanup/finalizing after the previous operations are complete.
-
-E.g. stopping loading indicators, closing no longer needed connections, etc.
-
-Think of it as a party finisher. No matter was a party good or bad, how many friends were in it, we still need (or at least should) do a cleanup after it.
-
-The code may look like this:
- */
-
+```js
 new Promise((resolve, reject) => {
   /* do something that takes time, and then call resolve or maybe reject */
 })
@@ -152,35 +144,28 @@ new Promise((resolve, reject) => {
   .finally(() => "stop")
   // so the loading indicator is always stopped before we go on
   .then(result =>" show result", err => "show error")
+```
 
-/**
- * Please note that finally(f) isn’t exactly an alias of then(f,f) though.
+- Please note that finally(f) isn’t exactly an alias of then(f,f) though.
+- There are important differences:
+- A finally handler has no arguments. In finally we don’t know whether the promise is successful or not. That’s all right, as our task is usually to perform “general” finalizing procedures.
+- Please take a look at the example above: as you can see, the finally handler has no arguments, and the promise outcome is handled by the next handler.
+- A finally handler “passes through” the result or error to the next suitable handler.
+- For instance, here the result is passed through finally to then:
 
-There are important differences:
-
-A finally handler has no arguments. In finally we don’t know whether the promise is successful or not. That’s all right, as our task is usually to perform “general” finalizing procedures.
-
-Please take a look at the example above: as you can see, the finally handler has no arguments, and the promise outcome is handled by the next handler.
-
-A finally handler “passes through” the result or error to the next suitable handler.
-
-For instance, here the result is passed through finally to then:
- */
-
+```js
 new Promise((resolve, reject) => {
   setTimeout(() => resolve("value"), 200);
 })
   .finally(() => console.log("Promise ready")) // triggers first
   .then(result => console.log(result)); // <-- .then shows "value"
+```
 
-/**
- * As you can see, the value returned by the first promise is passed through finally to the next then.
+- As you can see, the value returned by the first promise is passed through finally to the next then.
+- That’s very convenient, because finally is not meant to process a promise result. As said, it’s a place to do generic cleanup, no matter what the outcome was.
+- And here’s an example of an error, for us to see how it’s passed through finally to catch:
 
-That’s very convenient, because finally is not meant to process a promise result. As said, it’s a place to do generic cleanup, no matter what the outcome was.
-
-And here’s an example of an error, for us to see how it’s passed through finally to catch:
- */
-
+```js
 new Promise((resolve, reject)=>{
 	setTimeout(()=>{
 		reject(new Error("error here"))
@@ -190,9 +175,8 @@ new Promise((resolve, reject)=>{
 }).catch((err)=>{
 	console.log(err.message)
 })
+```
 
-/**
- * 	A finally handler also shouldn’t return anything. If it does, the returned value is silently ignored.
+- A finally handler also shouldn’t return anything. If it does, the returned value is silently ignored.
+- The only exception to this rule is when a finally handler throws an error. Then this error goes to the next handler, instead of any previous outcome.
 
-The only exception to this rule is when a finally handler throws an error. Then this error goes to the next handler, instead of any previous outcome.
- */
