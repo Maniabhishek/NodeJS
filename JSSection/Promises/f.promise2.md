@@ -57,7 +57,7 @@ const promise2 = new Promise((resolve,reject)=>{
 - The executor should call only one resolve or one reject. Any state change is final.
 
 - All further calls of resolve and reject are ignored:
-```
+```js
 const promise3 = new Promise((resolve,reject)=>{
 	resolve("done");
 	reject("error");//ignored
