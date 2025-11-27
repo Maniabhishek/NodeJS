@@ -1,7 +1,7 @@
 - Promise chains are great at error handling. When a promise rejects, the control jumps to the closest rejection handler. That’s very convenient in practice.
 - For instance, in the code below the URL to fetch is wrong (no such site) and .catch handles the error:
 
-```
+```js
 import fetch from "node-fetch";
 
 fetch("abc").then((response)=>{
@@ -30,7 +30,7 @@ fetch("https://jsonplaceholder.typicode.com/todos/1").then((response)=>{
 
 - For instance, this code:
 
-```
+```js
 new Promise((resolve,reject)=>{
     throw new Error("whoops error");
 }).catch(err=>{
@@ -48,7 +48,7 @@ new Promise((resolve,reject)=>{
 - The "invisible try..catch" around the executor automatically catches the error and turns it into rejected promise.
 - This happens not only in the executor function, but in its handlers as well. If we throw inside a .then handler, that means a rejected promise, so the control jumps to the nearest error handler.
 
-```
+```js
 new Promise((resolve, reject) => {
     resolve("ok");
   }).then((result) => {
@@ -64,7 +64,7 @@ new Promise((resolve, reject) => {
 - If we throw inside .catch, then the control goes to the next closest error handler. And if we handle the error and finish normally, then it continues to the next closest successful .then handler.
 - In the example below the .catch successfully handles the error:
 
-```
+```js
 new Promise((resolve,reject)=>{
     throw new Error("whoops error");
 }).catch(err=>{
@@ -77,7 +77,7 @@ new Promise((resolve,reject)=>{
 
 - In the example below we see the other situation with .catch. The handler (*) catches the error and just can’t handle it (e.g. it only knows how to handle URIError), so it throws it again:
 
-```
+```js
 new Promise((resolve,reject)=>{
     throw new Error("whoops error");
 }).catch((err)=>{
@@ -91,9 +91,7 @@ new Promise((resolve,reject)=>{
 }).catch(err=>{
     console.log(err);
 });
-```
 
-```
 new Promise(function() {
     noSuchFunction(); // Error here (no such function)
   })
