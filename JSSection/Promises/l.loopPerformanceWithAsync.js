@@ -1,6 +1,6 @@
 /*
   assume we have to fetch user info for multiple ids thorugh an api , with a for loop and using async await (in method getAllUsers) this method has no problem it will work as expected but 
-  next iteration of your loop will begin once a single user information as been collected. So, based on this method, this function will take n seconds to execute based on number of Ids,
+  next iteration of your loop will begin once a single user information has been collected. So, based on this method, this function will take n seconds to execute based on number of Ids,
   you will get synchronous output
 
   getAllUserImproved method adheres to the true asynchronous approach as it returns promise object , which will eventually be executed
