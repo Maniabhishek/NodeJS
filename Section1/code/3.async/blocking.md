@@ -5,7 +5,7 @@ const crypto = require("crypto")
 
 console.log('hello world')
 
-// bocking code this will block the main the thread 
+// bocking code this will block the main thread 
 crypto.pbkdf2Sync("password", "salt", 5000000, 50, "sha512");
 console.log("pkkdf2 is executed")
 
