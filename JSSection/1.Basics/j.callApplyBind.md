@@ -68,4 +68,26 @@ printFullName.call(obj2, "xyz", "zab")
 ```
 
 ### apply method
-- in case of apply methid it is similar to call method only difference is that while passing the arguments we need to pass it in array 
+- in case of apply methid it is similar to call method only difference is that while passing the arguments we need to pass it in array
+
+```ts
+const obj = {
+    firstName: "Abhishek",
+    lastName: "mani",
+    
+}
+
+let printFullName = function(city, state){
+        console.log(`${this.firstName} ${this.lastName} live in ${city} ${state}`)
+    }
+
+printFullName.apply(obj, ["bangalore", "karnataka"])
+
+const obj2 = {
+    firstName: "ABC",
+    lastName: "DEF"
+}
+
+printFullName.apply(obj2, ["xyz", "zab"])
+
+```
