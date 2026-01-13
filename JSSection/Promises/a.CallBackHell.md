@@ -42,3 +42,48 @@ getUsers(1, (user)=> {
     })
 })
 ```
+
+- above code can be optimized better with promise chaining and even better with async await
+```js
+function getUsers(id){
+    return new Promise(resolve => {
+        setTimeout(()=> {
+            resolve({id: id, name: "abhishek", email: "abc@gmail.com"})
+        }, 1000)
+    })
+}
+
+function getOrders(userid){
+    return new Promise(res=> {
+        setTimeout(()=> {
+            res([{item: "laptop", price: 1000}, {item: "mobile", price: 500}])
+        }, 1000)
+    })
+}
+
+function getPaymentDetails(orders){
+    return new Promise(res => {
+        setTimeout(()=> {
+            res([{item: "laptop", status: "paid"}, {item: "mobile", status: "paid"}])
+        })
+    })
+}
+
+function sendEmail(emailId){
+    return new Promise(res => {
+        setTimeout(()=> {
+            console.log(`successfully sent email to ${emailId}`)
+            res("email sent succefully")
+        }, 1000)
+    })
+}
+
+getUsers(1)
+    .then((user: any) => getOrders(user.id)
+    .then((orders: any)=> getPaymentDetails(orders)
+    .then((payments: any) => sendEmail(user.email)
+    .then(d=> console.log(d))
+    ))
+)
+
+```
