@@ -91,3 +91,29 @@ const obj2 = {
 printFullName.apply(obj2, ["xyz", "zab"])
 
 ```
+
+### bind 
+- with bind it is similar to call method only difference is that it doesn't invoke the method immediately but it returns new method which can be called later
+
+```ts
+const obj = {
+    firstName: "Abhishek",
+    lastName: "mani",
+    
+}
+
+let printFullName = function(city, state){
+        console.log(`${this.firstName} ${this.lastName} live in ${city} ${state}`)
+    }
+
+const printFullName1 = printFullName.bind(obj, "bangalore", "karnataka")
+printFullName1()
+
+const obj2 = {
+    firstName: "ABC",
+    lastName: "DEF"
+}
+
+const printFullName2 = printFullName.bind(obj2, "xyz", "zab")
+printFullName2()
+```
