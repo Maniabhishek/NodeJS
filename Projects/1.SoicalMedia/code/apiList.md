@@ -1,0 +1,17 @@
+# API LIST
+- POST /signup
+- POST /login
+- POST /logout
+
+- GET /profile/view
+- PATCH /profile/edit
+- PATCH /profile/password
+
+- GET /connections
+- GET /feed
+
+- GET /request/received
+- POST /reqeust/send/interested/:userid
+- POST /reqeust/send/ignored/:userid
+- POST /request/review/accepted/:reqeustID
+- POST /request/review/rejected/:requestID
